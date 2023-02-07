@@ -1,0 +1,58 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.36.1">
+      <projectUrl>https://github.daumkakao.com/KakaoTalk-PC/KakaoTalk_for_QT/</projectUrl>
+      <displayName></displayName>
+    </com.coravy.hudson.plugins.github.GithubProjectProperty>
+  </properties>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@5.0.0">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>https://github.daumkakao.com/KakaoTalk-PC/KakaoTalk_for_QT</url>
+        <credentialsId>blue.ocean</credentialsId>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/develop</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="empty-list"/>
+    <extensions>
+      <hudson.plugins.git.extensions.impl.CleanBeforeCheckout>
+        <deleteUntrackedNestedRepositories>false</deleteUntrackedNestedRepositories>
+      </hudson.plugins.git.extensions.impl.CleanBeforeCheckout>
+      <hudson.plugins.git.extensions.impl.SubmoduleOption>
+        <disableSubmodules>false</disableSubmodules>
+        <recursiveSubmodules>true</recursiveSubmodules>
+        <trackingSubmodules>false</trackingSubmodules>
+        <reference></reference>
+        <parentCredentials>false</parentCredentials>
+        <shallow>false</shallow>
+      </hudson.plugins.git.extensions.impl.SubmoduleOption>
+    </extensions>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.BatchFile>
+      <command>call &quot;C:/Program Files/Microsoft Visual Studio/2022/Professional/VC/Auxiliary/Build/vcvars64.bat&quot;&#xd;
+call C:/ProgramData/Jenkins/.jenkins/tools/hudson.plugins.cmake.CmakeTool/3.25.1/bin/cmake.exe C:/ProgramData/Jenkins/.jenkins/workspace/qtJenkinsTest -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=C:/kakao/work/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_PREFIX_PATH=C:/Qt/6.4.2/msvc2019_64/lib/cmake&#xd;
+call ninja -C C:/ProgramData/Jenkins/.jenkins/workspace/qtJenkinsTest/build&#xd;
+call C:/Qt/6.4.2/msvc2019_64/bin/windeployqt.exe --qmldir . C:/ProgramData/Jenkins/.jenkins/workspace/qtJenkinsTest/build/KakaoTalkUI.exe</command>
+      <configuredLocalRules/>
+    </hudson.tasks.BatchFile>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
